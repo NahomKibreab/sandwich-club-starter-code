@@ -53,16 +53,12 @@ public class DetailActivity extends AppCompatActivity {
 
         populateUI();
 
-        // Check if the is Image resource or make Image placeholder
-        if(sandwich.getImage() != null){
+        // Check if there is Image resource or make Image placeholder
             Picasso.with(this)
                     .load(sandwich.getImage())
+                    .placeholder(R.drawable.placeholder) // optional
+                    .error(R.drawable.error_image)         // optional
                     .into(ingredientsIv);
-        } else {
-            ingredientsIv.setImageResource(R.drawable.placeholder);
-        }
-
-
         setTitle(sandwich.getMainName());
     }
 
