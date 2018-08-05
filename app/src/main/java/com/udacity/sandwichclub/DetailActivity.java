@@ -105,7 +105,7 @@ public class DetailActivity extends AppCompatActivity {
         for (int i = 0; i < ingredients_Lists.size(); i++) {
             String ingredients_List = ingredients_Lists.get(i);
             if (i == checkComma2 - 1) {
-                stringBuilder2.append(ingredients_List).append(".");
+                stringBuilder2.append(ingredients_List).append(". ");
             } else {
                 stringBuilder2.append(ingredients_List).append(", ");
             }
