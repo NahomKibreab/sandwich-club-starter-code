@@ -10,13 +10,12 @@ import java.util.List;
 
 public class JsonUtils {
 
-    public static Sandwich parseSandwichJson(String json) {
+    public static Sandwich parseSandwichJson(String json) throws JSONException {
         String mainName, image, placeOfOrigin, description;
         List<String> alsoKnownAs_List = new ArrayList<>();
         List<String> ingredients_List = new ArrayList<>();
-        Sandwich sandwich = new Sandwich();
 
-        try {
+
             // Create JSONObject
             JSONObject jsonObject = new JSONObject(json);
 
@@ -61,17 +60,6 @@ public class JsonUtils {
             image = jsonObject.getString("image");
 
             // Set the JSON object to Sandwich object
-            sandwich.setMainName(mainName);
-            sandwich.setAlsoKnownAs(alsoKnownAs_List);
-            sandwich.setPlaceOfOrigin(placeOfOrigin);
-            sandwich.setDescription(description);
-            sandwich.setIngredients(ingredients_List);
-            sandwich.setImage(image);
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        return sandwich;
+        return new Sandwich (mainName, alsoKnownAs_List, placeOfOrigin, description, image, ingredients_List);
     }
 }

@@ -3,6 +3,9 @@ package com.udacity.sandwichclub;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -10,6 +13,8 @@ import android.widget.Toast;
 import com.squareup.picasso.Picasso;
 import com.udacity.sandwichclub.model.Sandwich;
 import com.udacity.sandwichclub.utils.JsonUtils;
+
+import org.json.JSONException;
 
 import java.util.List;
 
@@ -26,7 +31,6 @@ public class DetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-
         ImageView ingredientsIv = findViewById(R.id.image_iv);
 
         Intent intent = getIntent();
@@ -46,7 +50,11 @@ public class DetailActivity extends AppCompatActivity {
         String json = sandwiches[position];
 
         // Call JsonUtils for JSON parsing
-        sandwich = JsonUtils.parseSandwichJson(json);
+        try {
+            sandwich = JsonUtils.parseSandwichJson(json);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         if (sandwich == null) {
             // Sandwich data unavailable
             closeOnError();
